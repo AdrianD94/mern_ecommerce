@@ -23,3 +23,14 @@ exports.userSignUpValidator = (req, res, next) => {
   }
   next();
 };
+exports.categoryValidator = (req, res, next) => {
+  req.check('name', 'The name of the category is required').notEmpty();
+  
+
+  const errors = req.validationErrors();
+  if (errors) {
+    const firstError = errors.map(error => error.msg)[0];
+    return res.status(400).json({ error: firstError });
+  }
+  next();
+};
