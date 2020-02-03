@@ -1,14 +1,46 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const { create } = require('../controllers/category.js');
-const { requireSignin, isAuth, isAdmin } = require('../controllers/auth');
-const {categoryValidator} = require('../validator')
+const {
+  create,
+  categoryById,
+  read,
+  update,
+  remove,
+  list
+} = require("../controllers/category.js");
+const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
+const { categoryValidator } = require("../validator");
 
-const { userById } = require('../controllers/user');
+const { userById } = require("../controllers/user");
 
-router.post('/category/create/:userId', requireSignin, isAuth, isAdmin, categoryValidator,create);
+router.post(
+  "/category/create/:userId",
+  requireSignin,
+  isAuth,
+  isAdmin,
+  categoryValidator,
+  create
+);
+router.get("/category/:categoryId", read);
+router.get("/categories", list);
 
-router.param('userId', userById);
+router.delete(
+  "/category/:categoryId/:userId",
+  requireSignin,
+  isAuth,
+  isAdmin,
+  remove
+);
+router.put(
+  "/category/:categoryId/:userId",
+  requireSignin,
+  isAuth,
+  isAdmin,
+  update
+);
+
+router.param("userId", userById);
+router.param("categoryId", categoryById);
 
 module.exports = router;
