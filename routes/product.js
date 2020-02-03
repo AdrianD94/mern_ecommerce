@@ -1,20 +1,23 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const { create } = require('../controllers/product.js');
-const { requireSignin, isAuth, isAdmin } = require('../controllers/auth');
-const { categoryValidator } = require('../validator');
+const { create, productById, read,remove } = require("../controllers/product.js");
+const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
+const { categoryValidator } = require("../validator");
 
-const { userById } = require('../controllers/user');
+const { userById } = require("../controllers/user");
 
-router.post(
-  '/product/create/:userId',
+router.get("/product/:productId", read);
+router.post("/product/create/:userId", requireSignin, isAuth, isAdmin, create);
+router.delete(
+  "/product/:productId/:userId",
   requireSignin,
   isAuth,
   isAdmin,
-  create
+  remove
 );
 
-router.param('userId', userById);
+router.param("userId", userById);
+router.param("productId", productById);
 
 module.exports = router;

@@ -1,4 +1,0 @@
-
-MONGO_URI=mongodb+srv://adyy123:VTq4rvHatS0tYvEQ@cluster0-3evgu.mongodb.net/ecommerce?retryWrites=true&w=majority
-PORT=4000
-JWT_SECRET=gfdgmdfgdkfmg
