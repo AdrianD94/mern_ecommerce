@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
+import Layout from "../share/Layout";
+
 
 const Signup = () => {
-    return (
-        <div>
-            Signup
-        </div>
-    )
-}
+  return (
+    <Layout title="Signup Page" description="Signup to Node E-commerce App">
+      ...
+    </Layout>
+  );
+};
 
 export default Signup;
