@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../share/Layout";
+import { API } from "../../config";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -20,7 +21,24 @@ const Signup = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(values);
+    signup(values);
+  };
+
+  const signup = values => {
+    fetch(`${API}/signup`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(values)
+    })
+      .then(response => {
+        console.log(response.json());
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const signUpForm = () => (
