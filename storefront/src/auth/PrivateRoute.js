@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { isAuthenticated } from '.';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { isAuthenticated } from ".";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         <Component {...props} />
       ) : (
         <Redirect
-          to={{ pathname: '/signin', state: { from: props.location } }}
+          to={{ pathname: "/signin", state: { from: props.location } }}
         />
       )
     }
