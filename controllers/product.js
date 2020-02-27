@@ -134,7 +134,7 @@ exports.list = (req, res) => {
   let order = req.query.order ? req.query.order : "asc";
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
   let limit = req.query.limit ? parseInt(req.query.limit) : 6;
-
+  
   Product.find()
     .select("-photo")
     .populate("category")
@@ -182,7 +182,7 @@ exports.listBySearch = (req, res) => {
   let limit = req.body.limit ? parseInt(req.body.limit) : 100;
   let skip = parseInt(req.body.skip);
   let findArgs = {};
-
+  
   //console.log(order, sortBy, limit, skip, req.body.filters);
   //console.log(req.body.filters);
   // console.log("findArgs", findArgs);
